@@ -37,6 +37,11 @@ for variant in dark light phosphor; do
   xdotool key --window "$window" ctrl+j
   sleep 1
   import -window "$window" "native-shots/$variant.png"
+  # A header/count can render while a nested list has collapsed to zero height.
+  # Inspect the bodies, excluding headers and toolbar, to catch that regression.
+  matches_colors=$(convert "native-shots/$variant.png" -crop 350x180+270+170 +repage -format '%k' info:)
+  preview_colors=$(convert "native-shots/$variant.png" -crop 350x180+780+210 +repage -format '%k' info:)
+  [ "$matches_colors" -gt 8 ] && [ "$preview_colors" -gt 8 ] || { echo "Missing rendered result/preview content"; exit 1; }
   kill "$app_pid"
   wait "$app_pid" || true
   app_pid=""

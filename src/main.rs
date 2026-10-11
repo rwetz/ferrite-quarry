@@ -585,6 +585,7 @@ impl Render for Quarry {
         })
         .size_full();
         let preview = panel("Preview")
+            .size_full()
             .flex_1()
             .min_w_0()
             .min_h_0()
@@ -744,6 +745,7 @@ impl Render for Quarry {
                                         .min_h_0()
                                         .first(
                                             panel("Matches")
+                                                .size_full()
                                                 .meta(format!(
                                                     "{}{}",
                                                     self.total,
