@@ -36,3 +36,17 @@ jobs:
       - uses: Swatinem/rust-cache@v2
       - run: cargo clippy --all-targets -- -D warnings
       - run: cargo test
+      - name: Native UI capture dependencies
+        if: runner.os == 'Linux'
+        run: sudo apt-get install -y xvfb mesa-vulkan-drivers xdotool imagemagick
+      - name: Capture native layout
+        if: runner.os == 'Linux'
+        timeout-minutes: 10
+        run: |
+          cargo build --locked -j 2
+          bash .github/scripts/native_smoke.sh
+      - uses: actions/upload-artifact@v4
+        if: runner.os == 'Linux' && always()
+        with:
+          name: native-layout
+          path: native-shots/

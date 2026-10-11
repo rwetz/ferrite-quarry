@@ -49,9 +49,20 @@ impl Quarry {
                 .placeholder("Search your files...")
                 .prompt(">")
         });
+        // A generated fixture is used only by native layout QA in debug builds.
+        let saved_settings = settings::Settings::load();
+        #[cfg(debug_assertions)]
+        let saved_settings = {
+            let mut saved_settings = saved_settings;
+            if let Some(root) = std::env::var_os("QUARRY_SMOKE_ROOT") {
+                saved_settings.folders = vec![root.into()];
+                input.update(cx, |input, cx| input.set_value("needle", cx));
+            }
+            saved_settings
+        };
         let subscription = cx.subscribe(&input, |this, _, _: &InputEvent, cx| this.search(cx));
         let mut app = Self {
-            settings: settings::Settings::load(),
+            settings: saved_settings,
             input,
             catalog: None,
             hits: Arc::new(Vec::new()),
