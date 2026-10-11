@@ -1,6 +1,6 @@
 [package]
 name = "ferrite-quarry"
-version = "0.1.0"
+version = "0.1.1"
 description = "Fast local file and content search with a trigram index and native previews."
 authors = ["Ryan Wetzstein"]
 license = "Apache-2.0"
