@@ -459,7 +459,10 @@ impl Render for Quarry {
                     )
             })
             .collect::<Vec<_>>();
-        let folders = panel("Search folders").w(px(230.)).flex_none().min_h_0()
+        // Narrow windows stack the matches over the preview and give the
+        // folders less room, instead of overflowing two side-by-side panes.
+        let narrow = window.viewport_size().width < px(900.);
+        let folders = panel("Search folders").w(px(if narrow { 180. } else { 230. })).flex_none().min_h_0()
             .child(Button::new("add-folder").label("Add folder").icon(Icon::Plus).primary().full_width().on_click(cx.listener(|this, _: &ClickEvent, _, cx| this.add_folder(cx))))
             .child(scroll_area("folders-scroll").flex_1().min_h_0().child(div().flex().flex_col().gap_3().children(folder_rows)))
             .child(div().body(text::SM).text_color(hsla(p.fg_dim)).child("Only chosen folders are searched. Hidden files, ignored files and build folders stay out."))
@@ -739,8 +742,9 @@ impl Render for Quarry {
                                 })
                                 .child(
                                     split("results-preview")
+                                        .when(narrow, |split| split.vertical())
                                         .initial(0.48)
-                                        .min(px(240.))
+                                        .min(px(if narrow { 140. } else { 240. }))
                                         .flex_1()
                                         .min_h_0()
                                         .first(
