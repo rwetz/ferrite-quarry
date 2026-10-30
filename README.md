@@ -1,8 +1,20 @@
-# Quarry
+<p align="center">
+  <img src="assets/logo.svg" width="128" height="128" alt="Quarry logo">
+</p>
 
-A native Ferrite file-search app. Choose folders, index filenames and UTF-8
-text, search instantly, inspect a matching line, and open or reveal the file.
-Search and indexing run off the UI thread. Nothing is uploaded.
+<h1 align="center">Quarry</h1>
+
+<p align="center">
+  A native Ferrite file-search app: index filenames and text, search instantly, nothing uploaded.
+</p>
+
+<p align="center">
+  <a href="https://github.com/rwetz/ferrite-quarry/actions/workflows/ci.yml"><img src="https://github.com/rwetz/ferrite-quarry/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://github.com/rwetz/ferrite-quarry/releases/latest"><img src="https://img.shields.io/github/v/release/rwetz/ferrite-quarry?color=F2A93B&labelColor=18181B" alt="Latest release"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-3D3D42?labelColor=18181B" alt="License"></a>
+</p>
+
+![Quarry searching a folder for "dial", with matches and a file preview](docs/main.png)
 
 ## Use
 
@@ -62,6 +74,16 @@ platform archives. SHA256SUMS.txt covers all assets.
 2. Persisted index snapshots and unchanged-file reuse on startup.
 3. Search term highlights and extension filters.
 4. Benchmarks at 10k/100k files, peak memory measurement, and native layout QA.
+
+## Keys
+
+| Keys | |
+|---|---|
+| <kbd>Ctrl</kbd>+<kbd>F</kbd> | Focus search |
+| <kbd>Ctrl</kbd>+<kbd>J</kbd> <kbd>K</kbd> | Move through results |
+| <kbd>Ctrl</kbd>+<kbd>Enter</kbd> | Open the selected file |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> | Command palette |
+| <kbd>Ctrl</kbd>+<kbd>,</kbd> | Settings |
 
 ---
 
