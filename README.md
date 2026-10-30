@@ -62,3 +62,12 @@ platform archives. SHA256SUMS.txt covers all assets.
 2. Persisted index snapshots and unchanged-file reuse on startup.
 3. Search term highlights and extension filters.
 4. Benchmarks at 10k/100k files, peak memory measurement, and native layout QA.
+
+---
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/brand/heptagram-white.svg">
+    <img src="docs/brand/heptagram-black.svg" alt="heptagram" width="48">
+  </picture>
+</p>
